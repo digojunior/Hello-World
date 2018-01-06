@@ -1,40 +1,39 @@
 '''18. Faça um Programa que peça uma data no formato dd/mm/aaaa e determine se a mesma é uma data válida.'''
-# INFORMA DATA
 
-
-# 
+#Solicita uma data !
 data = input('Informe uma data no formato dd/mm/yyyy: ')
 
 # SEPARA OS INTEIROS DA DATA INFORMADA POR INDEX
 dia = int(data[0:2])
 mes = int(data[3:5])
 ano = int(data[6:])
-# VERIFICA SE É BISSEXTO SE FOR BISSEXTO 
+print(dia,mes,ano)
+
+#Verifica ano bissexto ou não !
+bissexto = False
 if ano % 4 == 0:
     bissexto = True
     if ano % 100 == 0 and ano % 400 != 0:
         bissexto = False
         
-#condicional do mês de fevereiro
-    if ((bissexto) and (mes == 2) and (dia >=1 or dia <=29)):
-        valida_fev = True
-    elif bissexto == False and dia >=1 or dia <=28:
-        valida_fev = True
-        
-    else:
-        valida_fev = False
+    if (bissexto):
+        print('Bissexto')
+if not(bissexto):
+    print('Não é Bissexto')
     
-#verifica mes e dia
-valida = True
-if (mes in (1, 3, 5, 7, 8, 10, 12)):
-    if (dia < 1) or (dia > 31):
-        valida = False
-        
-elif (mes in (4, 6, 9, 11)):
-    if (dia < 1) or (dia > 30):
-        valida = False
+valida = False
+if mes in (1, 3, 5, 7, 8, 10, 12) and (dia >=1 and dia <=31):
+        valida = True
+if mes in (4, 6, 9, 11) and (dia > 30):
+        valida = False        
 
-if (valida) and (valida_fev):
-    print(data,'é valida')
-else:
-    print(data, 'é invalida')
+if (bissexto) and mes == 2 and (dia >=1 and dia <=29):
+    valida = True
+if not(bissexto) and mes == 2 and (dia >=29):
+    valida = False
+    
+    
+if(valida):
+        print(data,'é uma data valida')
+if not (valida):
+    print('Não é uma data valida')
